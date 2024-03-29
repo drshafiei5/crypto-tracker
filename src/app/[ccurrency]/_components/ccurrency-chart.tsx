@@ -82,7 +82,7 @@ const CryptoCurrencyChart = ({
             chart: {
                 id: "area-datetime",
                 type: "area",
-                height: 350,
+                // height: 350,
                 zoom: {
                     enabled: false,
                 },

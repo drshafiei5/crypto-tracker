@@ -3,16 +3,8 @@
 import React, { memo, useMemo, useState } from "react";
 import useWebSocket from "react-use-websocket";
 import dynamic from "next/dynamic";
-import {
-    ICryptoQuote,
-    IPoints,
-    TCryptoPrice,
-} from "@/types/crypto";
-import {
-    API_URL_SOCKET,
-    socketDetailA,
-    socketDetailB,
-} from "@/constants";
+import { ICryptoQuote, IPoints, TCryptoPrice } from "@/types/crypto";
+import { API_URL_SOCKET, socketDetailA, socketDetailB } from "@/constants";
 import { currencies } from "@/utils/currencies";
 import { useSearchParams } from "next/navigation";
 import { usePrevious } from "react-use";
@@ -77,9 +69,7 @@ const ChartInfo = ({ points, ccurrency, rate }: ChartInfoProps) => {
                             d.p * (1 / rate?.price || 1)
                         ).toFixed(newestPrice > 1 ? 2 : 8);
 
-                        document.title = `BTC ${newPrice} (${
-                            p24h > 0 ? "+" : "-"
-                        }${p24h})`;
+                        document.title = `BTC ${newPrice}(${p24h}%)`;
 
                         setNewPoint([
                             +t,
@@ -91,7 +81,9 @@ const ChartInfo = ({ points, ccurrency, rate }: ChartInfoProps) => {
 
                         setAdditionalData({
                             p24h: +(d.p24h - rate.percentChange24h).toFixed(2),
-                            price: sign + (d.p * (1 / rate.price)).toFixed(2),
+                            price:
+                                sign +
+                                (d.p * (1 / rate.price)).toLocaleString(),
                         });
                     }
                 }
@@ -115,7 +107,7 @@ const ChartInfo = ({ points, ccurrency, rate }: ChartInfoProps) => {
                 <div className="flex items-center">
                     {additionalData?.p24h && additionalData?.price ? (
                         <p className="flex items-center gap-2 px-3 py-1">
-                            <span className={"text-sm font-bold "}>
+                            <span className={"text-sm font-bold ltr"}>
                                 ({additionalData.p24h}% روزانه)
                             </span>
                             <span
