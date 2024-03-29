@@ -1,22 +1,18 @@
 "use client";
 
-import React, { memo, useEffect, useMemo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import useWebSocket from "react-use-websocket";
 import dynamic from "next/dynamic";
 import {
-    ICoinmarketcapRes,
-    ICryptoConversion,
     ICryptoQuote,
     IPoints,
     TCryptoPrice,
 } from "@/types/crypto";
 import {
     API_URL_SOCKET,
-    defaultCurrency,
     socketDetailA,
     socketDetailB,
 } from "@/constants";
-import { cmcInstance } from "@/utils/axios";
 import { currencies } from "@/utils/currencies";
 import { useSearchParams } from "next/navigation";
 import { usePrevious } from "react-use";
@@ -28,14 +24,14 @@ const CryptoCurrencyChart = dynamic(() => import("./ccurrency-chart"), {
 interface ChartInfoProps {
     points: IPoints;
     ccurrency: string;
+    rate: ICryptoQuote;
 }
 
 // get chart info and update by details websocket
-const ChartInfo = ({ points, ccurrency }: ChartInfoProps) => {
+const ChartInfo = ({ points, ccurrency, rate }: ChartInfoProps) => {
     const searchParams = useSearchParams();
     const currency = searchParams?.get("currency");
     const cryptoId = searchParams?.get("cryptoId");
-    const [rate, setRate] = useState<ICryptoQuote>();
     const [newPoint, setNewPoint] = useState<number[]>([]);
     const prevPoint = usePrevious(newPoint);
 
@@ -102,30 +98,6 @@ const ChartInfo = ({ points, ccurrency }: ChartInfoProps) => {
             },
         }
     );
-
-    // get Conversion for currenct crypto
-    const getConversion = async (currency: string) => {
-        const { id } = currencies.find((c) => c.symbol === currency);
-        const url = `/data-api/v3/cryptocurrency/quote/latest?id=${id}&convertId=${defaultCurrency.id}`;
-        const res = await cmcInstance.get<
-            ICoinmarketcapRes<ICryptoConversion[]>
-        >(url);
-
-        return res;
-    };
-
-    useEffect(() => {
-        getConversion(currency).then((res) => {
-            const {
-                data: [
-                    {
-                        quotes: [rate],
-                    },
-                ],
-            } = res.data;
-            setRate(rate);
-        });
-    }, [currency]);
 
     return (
         <div className="p-3">
