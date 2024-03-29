@@ -248,7 +248,7 @@ export const currencies = [
     },
     {
         id: 2822,
-        name: "پرو سول",
+        name: "سول پرو",
         sign: "S/.",
         symbol: "PEN",
     },
@@ -458,7 +458,7 @@ export const currencies = [
     },
     {
         id: 3557,
-        name: "میانمار کیات",
+        name: "کیات میانمار",
         sign: "Ks",
         symbol: "MMK",
     },
@@ -548,13 +548,13 @@ export const currencies = [
     },
     {
         id: 3572,
-        name: "ازبکستان سوم",
+        name: "سوم ازبکستان",
         sign: "پس",
         symbol: "UZS",
     },
     {
         id: 3573,
-        name: "بولیوار حاکم",
+        name: "بولیوار ونزوئلا",
         sign: "Bs.",
         symbol: "VES",
     },]
