@@ -83,6 +83,7 @@ const ChartInfo = ({ points, ccurrency, rate }: ChartInfoProps) => {
                             p24h: +(d.p24h - rate.percentChange24h).toFixed(2),
                             price:
                                 (d.p * (1 / rate.price)).toLocaleString() +
+                                " " +
                                 sign,
                         });
                     }
