@@ -82,8 +82,8 @@ const ChartInfo = ({ points, ccurrency, rate }: ChartInfoProps) => {
                         setAdditionalData({
                             p24h: +(d.p24h - rate.percentChange24h).toFixed(2),
                             price:
-                                sign +
-                                (d.p * (1 / rate.price)).toLocaleString(),
+                                (d.p * (1 / rate.price)).toLocaleString() +
+                                sign,
                         });
                     }
                 }
