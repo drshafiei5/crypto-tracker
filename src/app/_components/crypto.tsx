@@ -2,7 +2,7 @@
 
 import { memo, useState } from "react";
 import dynamic from "next/dynamic";
-import { PropagateLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 
 import { ICryptoItem, ICryptoQuote } from "@/types/crypto";
 import CurrencyWrapper from "../_contexts/cryptos-context";
@@ -13,7 +13,7 @@ const CryptoHeader = dynamic(() => import("./crypto-header"), {
     ssr: false,
     loading: () => (
         <div className="flex items-center justify-center min-h-[30px]">
-            <PropagateLoader color="white" />
+            <BeatLoader color="white" />
         </div>
     ),
 });
