@@ -1,9 +1,12 @@
 "use client";
 
 import React, { memo, useMemo, useState } from "react";
-import Select from "react-select";
-import { currencies } from "@/utils/currencies";
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
+
+import { currencies } from "@/utils/currencies";
+
+const Select = dynamic(() => import("react-select"), { ssr: false });
 
 interface Currency {
     label: string;

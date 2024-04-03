@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { memo, useContext, useMemo } from "react";
 import { useRouter } from "next/navigation";
@@ -67,9 +67,9 @@ const TrackerItem = ({
             </th>
 
             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                {new Intl.NumberFormat("en-US", {
+                {price.toLocaleString(undefined, {
                     maximumFractionDigits: price > 1 ? 2 : 8,
-                }).format(price)}{" "}
+                })}{" "}
                 {sign}
             </td>
 
