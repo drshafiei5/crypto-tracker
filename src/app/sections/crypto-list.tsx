@@ -100,7 +100,7 @@ const CryptoList = ({ cryptos, rate, search }: CryptoListProps) => {
 
     return (
         <section className="py-1 bg-blueGray-50">
-            <div className="w-full mb-12 px-4 mx-auto mt-12">
+            <div className="w-full mb-12 px-4 mx-auto mt-8">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
                     <div className="rounded-t mb-0 px-4 py-3 border-0">
                         <div className="flex flex-wrap items-center">
